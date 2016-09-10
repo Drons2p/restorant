@@ -71,8 +71,8 @@ class DishTableSeeder extends Seeder
         ));
     
      Dish::create(array(
-            'name' => 'Хлеб ',
-            'description' => 'Хлеб Хлеб Хлеб Хлеб ',
+            'name' => 'Хліб ',
+            'description' => 'Хліб Хліб Хліб ',
             'category_id' => '1'
         ));
           
@@ -83,8 +83,8 @@ class DishTableSeeder extends Seeder
         ));
           
      Dish::create(array(
-            'name' => 'Картошка ',
-            'description' => 'Картошка Картошка Картошка Картошка ',
+            'name' => 'Картопля ',
+            'description' => 'Картопля Картопля Картопля Картопля ',
             'category_id' => '2'
         ));
           
