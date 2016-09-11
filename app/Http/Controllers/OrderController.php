@@ -32,6 +32,16 @@ public function index()
    
 public function create()
     {
+        
+              
+             if (!Session::has('user_id')) {
+                
+            $msg = "Вы джолжны авторизироватся";
+        
+                return \View('error', array('msg' => $msg));
+                
+          } 
+	
    
            $id = \Input::get('id');
            $dish = \Input::get('dish');

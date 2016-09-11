@@ -274,7 +274,9 @@
          
                       
              <form id="order-form" class="form" role="form" method="POST" action="/order/create">          
-                                             
+                                      
+			 @if (Session::has('user_id'))
+	       
                            <select class="form-control" name="sent"> 
                                 <option value="0">Сохранить как ченовик</option>
                                 <option value="1">Отправить заказ</option>
@@ -285,6 +287,8 @@
                                                          <button type="submit" class="btn btn-primary">
                                                         Оотправить
                                                     </button>
+
+			@endif
                                  
                     @foreach ($draft->Dish as $draft_dish) 
                          <div><input class="hide" type="checkbox" name="dish[]" value="{{ $draft_dish->id }}" checked>{{ $draft_dish->name }} <span class="glyphicon glyphicon-trash del"></span></div>
@@ -295,18 +299,22 @@
                         
           @Else 
                       <form id="order-form" class="form" role="form" method="POST" action="/order/create">          
-                                             
+                                        
+			 @if (Session::has('user_id'))     
                            <select class="form-control" name="sent"> 
                                 <option value="0">Сохранить как ченовик</option>
                                 <option value="1">Отправить заказ</option>
                      
                             </select>
-                            
+	
                              <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                                                          <button type="submit" class="btn btn-primary">
                                                         Оотправить
                                                     </button>
                                              
+
+			@endif
+                            
                                         </form> 
                                            
           @Endif
