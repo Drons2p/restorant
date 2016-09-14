@@ -287,7 +287,8 @@
                                 <option value="0">Индивидуальный</option>
                                 
               @foreach ($Usergrupobj as $Usergrup)
-                                <option value="{{$Usergrup->id}}">Как заказ в группу {{ $Usergrup->id }}</option>
+             
+                                <option value="{{$Usergrup->id}}">Как заказ в группу {{$Usergrup->name}}</option>
                    @endforeach           
                             </select>
                       
@@ -336,7 +337,7 @@
                                 <option value="0">Индивидуальный</option>
                                 
               @foreach ($Usergrupobj as $Usergrup)
-                                <option value="{{$Usergrup->id}}">Как заказ в группу {{ $Usergrup->id }}</option>
+                                <option value="{{$Usergrup->id}}">Как заказ в группу {{ $Usergrup->name }}</option>
                    @endforeach           
                             </select>
        </div>     
