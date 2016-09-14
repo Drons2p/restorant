@@ -16,7 +16,8 @@ Route::post('/сategory/create/', 'CategoryController@create');
 Route::post('/сategory/save/', 'CategoryController@save');
 
 Route::get('/', 'IndexController@index');
-Route::get('/order/index', 'OrderController@index');
+Route::get('/order/ind/index', 'OrderController@index');
+Route::get('/order/grup/index', 'OrderController@grupindex');
 
 
 Route::get('/logout', 'IndexController@logout');

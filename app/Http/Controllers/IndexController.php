@@ -30,10 +30,12 @@ class IndexController extends Controller
       $AdminGruplist = Grup::where("admin_id", "=", \Session::get('user_id'))->lists('id');
       $reqs = Req::whereIn('id', $AdminGruplist)->get();
       
+      $Usergrupobj = \DB::table('grup_user')->where('user_id', '=', \Session::get('user_id'))->get();
+  
       
     return \View('index', array('categories' => $categories, 'draft' => $draft, 
                  'grups' => $grups, 'reqs' => $reqs, 'Usergruplist' => $Usergruplist, 
-                 'Userreqslist' => $Userreqslist));
+                 'Usergrupobj' => $Usergrupobj, 'Userreqslist' => $Userreqslist));
              
         
     }

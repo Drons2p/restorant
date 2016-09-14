@@ -281,7 +281,15 @@
                                 <option value="0">Как ченовик</option>
                                 <option value="1">Как заказ</option>
                             </select>
-          
+                            
+                           <select class="form-control" name="grup_id"> 
+                           
+                                <option value="0">Индивидуальный</option>
+                                
+              @foreach ($Usergrupobj as $Usergrup)
+                                <option value="{{$Usergrup->id}}">Как заказ в группу {{ $Usergrup->id }}</option>
+                   @endforeach           
+                            </select>
                       
        </div>     
 
@@ -323,7 +331,14 @@
                                 <option value="1">Как заказ</option>
                      
                             </select>
-                      
+                                                 <select class="form-control" name="grup_id"> 
+                           
+                                <option value="0">Индивидуальный</option>
+                                
+              @foreach ($Usergrupobj as $Usergrup)
+                                <option value="{{$Usergrup->id}}">Как заказ в группу {{ $Usergrup->id }}</option>
+                   @endforeach           
+                            </select>
        </div>     
 
     

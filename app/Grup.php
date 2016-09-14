@@ -16,5 +16,9 @@ class Grup extends \Eloquent
             return User::where("id", "=", $this->admin_id)->first();
             
             }
-    
+    public function Orders()
+          {
+            return $this->morphToMany('App\Order', 'orderable');
+          }
+
 }

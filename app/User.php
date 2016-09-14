@@ -32,5 +32,9 @@ class User extends Authenticatable
             {
             return $this->hasMany('App\Grup');
             }
-    
+            
+    public function Orders()
+          {
+            return $this->morphToMany('App\Order', 'orderable');
+          }
 }

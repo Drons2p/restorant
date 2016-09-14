@@ -10,9 +10,13 @@ class Order extends \Eloquent
             {
             return $this->belongsToMany('App\Dish');
             }   
-   public function User()
+   public function Users()
             {
-            return $this->belongsTo('App\User');
+            return $this->morphedByMany('App\User', 'orderable');
+            }
+   public function Grups()
+            {
+            return $this->morphedByMany('App\Grup', 'orderable');
             }
             
 }

@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Pivot Grup table seeded!');
             $this->call('ReqGrupTableSeeder');
             $this->command->info('Req Grup table seeded!');
+            $this->call('OrderablesTableSeeder');
+            $this->command->info('Orderables table seeded!');
     }
 }
 
@@ -213,3 +215,15 @@ class ReqGrupTableSeeder extends Seeder
         
     }
  }
+
+
+class OrderablesTableSeeder extends Seeder
+ {
+    public function run() {
+        DB::table('orderables')->delete();
+  
+        DB::insert('insert into orderables (order_id, orderable_id, orderable_type) values (1, 1, "App\\\User")');  
+        
+    }
+ }
+ 

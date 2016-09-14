@@ -6,7 +6,7 @@
 
         @foreach ($orders as $order)
         
-         {{ $order->user->name}} - {{ $order->created_at}} <br />
+         {{-- $order->users->name --}} - {{ $order->created_at}} <br />
          
             @foreach ($order->dish as $dish)
          

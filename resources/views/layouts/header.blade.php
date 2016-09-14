@@ -116,7 +116,8 @@ $.ajaxSetup(
                    <div class="col-lg-2"> 
                   
           @can('create') <!-- проверяем права -->       
-             <a href="/order/index">Заказы</a>    
+             <a href="/order/ind/index">Заказы индивидуальные</a><br />
+             <a href="/order/grup/index">Заказы груповые</a>    
     @endcan 
                  </div> 
 	@endif
