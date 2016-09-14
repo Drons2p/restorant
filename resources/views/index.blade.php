@@ -316,7 +316,7 @@
 			@endif
                                  
                     @foreach ($draft->Dish as $draft_dish) 
-                         <div><input class="hide" type="checkbox" name="dish[]" value="{{ $draft_dish->id }}" checked>{{ $draft_dish->name }} <span class="glyphicon glyphicon-trash del"></span></div>
+                         <div><input class="hide" type="checkbox" name="dish[]" value="{{ $draft_dish->id }}" checked>{{ $draft_dish->name }} {{ $draft_dish->price }} <span class="glyphicon glyphicon-trash del"></span></div>
                       @endforeach
                                    <input type="hidden" name="id" value="{{{$draft->id}}}"/>
                                      
