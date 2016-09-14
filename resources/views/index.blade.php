@@ -250,11 +250,7 @@
        </div>     
     </div>  
 </div>     
-
-     
-                  
-                        
-                  
+ 
                   
                   <br />
           @endforeach
@@ -276,17 +272,33 @@
              <form id="order-form" class="form" role="form" method="POST" action="/order/create">          
                                       
 			 @if (Session::has('user_id'))
-	       
+	         
+<div class="container-fluid">
+   <div class="row">      
+          <div class="col-lg-6"> 
                            <select class="form-control" name="sent"> 
-                                <option value="0">Сохранить как ченовик</option>
-                                <option value="1">Отправить заказ</option>
-                     
+                           
+                                <option value="0">Как ченовик</option>
+                                <option value="1">Как заказ</option>
                             </select>
-                            
+          
+                      
+       </div>     
+
+    
+          <div class="col-lg-6"> 
+          
                              <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                                                          <button type="submit" class="btn btn-primary">
                                                         Оотправить
                                                     </button>
+                      
+       </div>     
+    </div>  
+</div>     
+
+     
+                            
 
 			@endif
                                  
@@ -301,17 +313,32 @@
                       <form id="order-form" class="form" role="form" method="POST" action="/order/create">          
                                         
 			 @if (Session::has('user_id'))     
+               
+<div class="container-fluid">
+   <div class="row">      
+          <div class="col-lg-6"> 
+          
                            <select class="form-control" name="sent"> 
-                                <option value="0">Сохранить как ченовик</option>
-                                <option value="1">Отправить заказ</option>
+                                <option value="0">Как ченовик</option>
+                                <option value="1">Как заказ</option>
                      
                             </select>
-	
+                      
+       </div>     
+
+    
+          <div class="col-lg-6"> 
+           
                              <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                                                          <button type="submit" class="btn btn-primary">
-                                                        Оотправить
+                                                        Отправить
                                                     </button>
                                              
+       </div>     
+    </div>  
+</div>     
+
+     
 
 			@endif
                             
@@ -320,6 +347,43 @@
           @Endif
  
               
+              <br />
+    
+                <div class="title">Группы</div>
+                  
+    @foreach ($grups as $grup)
+        
+        {{ $grup->name }} - основатель {{ $grup->founder()->name }}
+       @if(!in_array($grup->id, $Userreqslist))
+           @if(in_array($grup->id, $Usergruplist))
+            
+             <a href="/grup/detach/{{\Session::get('user_id')}}/{{$grup->id}}"> - Покинуть</a> 
+                  
+              @Else 
+           <a href="/grup/req/{{$grup->id}}"> - Присоеденится</a>   
+                                       
+              @Endif                  
+          @Endif
+        <br />
+        @foreach ($grup->users as $user)
+        
+               {{ $user->name }} <a href="/grup/detach/{{$user->id}}/{{$grup->id}}">Удалить</a>  <br />
+        
+          @endforeach
+          <br />
+          
+      @endforeach
+        
+        <br /><br /><br />
+                
+                <div class="title">Запросы</div>
+                
+        @foreach ($reqs as $req)
+        
+          {{ $req->grup->name }} - {{ $req->user->name }} -  <a href="/grup/accept/ {{$req->id}}">Принять</a> <br /> 
+        
+          @endforeach
+          <br /><br />
               
               </div>
               

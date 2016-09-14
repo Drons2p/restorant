@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Order;
 use App\Category;
+use App\Grup;
+use App\Req;
 
 class IndexController extends Controller
  {
@@ -20,8 +22,18 @@ class IndexController extends Controller
  
       $draft = Order::where("sent", "=", '0')->where("user_id", "=", \Session::get('user_id'))->first();
       $categories = Category::all();
+      $grups = Grup::all();
       
-    return \View('index', array('categories' => $categories, 'draft' => $draft));
+      $Usergruplist = \DB::table('grup_user')->where('user_id', '=', \Session::get('user_id'))->lists('grup_id');
+      $Userreqslist = \DB::table('reqs')->where("user_id", "=", \Session::get('user_id'))->lists('grup_id');
+      
+      $AdminGruplist = Grup::where("admin_id", "=", \Session::get('user_id'))->lists('id');
+      $reqs = Req::whereIn('id', $AdminGruplist)->get();
+      
+      
+    return \View('index', array('categories' => $categories, 'draft' => $draft, 
+                 'grups' => $grups, 'reqs' => $reqs, 'Usergruplist' => $Usergruplist, 
+                 'Userreqslist' => $Userreqslist));
              
         
     }
@@ -38,6 +50,7 @@ class IndexController extends Controller
    
   
             \Session::put('user_id', \Auth::user()->id);
+            \Session::put('name', \Auth::user()->name);
             
             
             return \Redirect::to('/');

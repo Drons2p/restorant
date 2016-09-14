@@ -7,6 +7,8 @@ use App\User;
 use App\Dish;
 use App\Order;
 use App\Category;
+use App\Grup;
+use App\Req;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,6 +29,12 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Category table seeded!');
             $this->call('PivotTableSeeder');
             $this->command->info('Pivot table seeded!');
+            $this->call('GrupTableSeeder');
+            $this->command->info('Grup table seeded!');
+            $this->call('PivotGrupTableSeeder');
+            $this->command->info('Pivot Grup table seeded!');
+            $this->call('ReqGrupTableSeeder');
+            $this->command->info('Req Grup table seeded!');
     }
 }
 
@@ -44,14 +52,14 @@ class UserTableSeeder extends Seeder
     
         User::create(array(
             'email' => 'drons2p2@ukr.net',
-            'name' => 'Dron',
+            'name' => 'Dron2',
             'is_admin' => '0',
             'password' => Hash::make('111111')
         ));
         
         User::create(array(
             'email' => 'drons2p3@ukr.net',
-            'name' => 'Dron',
+            'name' => 'Dron3',
             'is_admin' => '0',
             'password' => Hash::make('111111')
         ));
@@ -150,8 +158,58 @@ class PivotTableSeeder extends Seeder
  {
     public function run() {
   
+        DB::table('dish_order')->delete();
         DB::insert('insert into dish_order (dish_id, order_id) values (1, 1)');  
         DB::insert('insert into dish_order (dish_id, order_id) values (2, 1)');  
+        
+    }
+ }
+ 
+ 
+class GrupTableSeeder extends Seeder
+ {
+    public function run() {
+        DB::table('grups')->delete();
+    
+     Grup::create(array(
+            'name' => 'Первая группа',
+            'admin_id' => '3'
+        ));
+        
+     Grup::create(array(
+            'name' => 'Вторая группа',
+            'admin_id' => '2'
+        ));
+        
+     Grup::create(array(
+            'name' => 'Третья группа',
+            'admin_id' => '3'
+        ));
+    
+    }
+ }
+
+class PivotGrupTableSeeder extends Seeder
+ {
+    public function run() {
+        DB::table('grup_user')->delete();
+  
+        DB::insert('insert into grup_user (grup_id, user_id) values (1, 1)');  
+        DB::insert('insert into grup_user (grup_id, user_id) values (1, 2)');  
+        
+    }
+ }
+ 
+  
+class ReqGrupTableSeeder extends Seeder
+ {
+    public function run() {
+        DB::table('reqs')->delete();
+    
+     Req::create(array(
+            'user_id' => '2',
+            'grup_id' => '3'
+        ));
         
     }
  }
