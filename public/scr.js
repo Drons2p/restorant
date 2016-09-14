@@ -1,4 +1,5 @@
 
+total_price = 0;
 
 $( document ).ready(function() {
     
@@ -7,9 +8,14 @@ $( document ).ready(function() {
               
               id = $(this).data( "id" );
               name = $(this).data( "name" );
+              price = $(this).data( "price" );
              
               
-              $('#order-form').append('<div><input class="hide" type="checkbox" name="dish[]" value="'+id+'" checked> '+name+' <span class="glyphicon glyphicon-trash del"></span></div>');
+              $('#order-form').append('<div><input class="hide" type="checkbox" name="dish[]" value="'+id+'" checked> '+name+' '+ price +' <span class="glyphicon glyphicon-trash del"></span></div>');
+              
+              total_price = total_price + price;
+               
+              $("#total").text(total_price);
               
             $( ".del" ).on('click', function(){
                    $(this).parent().remove() 

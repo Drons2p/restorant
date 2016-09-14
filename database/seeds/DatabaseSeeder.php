@@ -77,30 +77,35 @@ class DishTableSeeder extends Seeder
         Dish::create(array(
             'name' => 'Сало',
             'description' => 'Сало Сало Сало',
+            'price' => '10',
             'category_id' => '1'
         ));
     
      Dish::create(array(
             'name' => 'Хлеб ',
             'description' => 'Хлеб Хлеб Хлеб Хлеб ',
+            'price' => '20',
             'category_id' => '1'
         ));
           
      Dish::create(array(
             'name' => 'Борщ ',
             'description' => 'Борщ Борщ Борщ Борщ Борщ',
+            'price' => '30',
             'category_id' => '1'
         ));
           
      Dish::create(array(
             'name' => 'Картошка ',
             'description' => 'Картошка Картошка Картошка Картошка ',
+            'price' => '10',
             'category_id' => '2'
         ));
           
      Dish::create(array(
             'name' => 'Каша ',
             'description' => 'Каша Каша Каша Каша Каша ',
+            'price' => '30',
             'category_id' => '2'
         ));  
         
@@ -108,11 +113,13 @@ class DishTableSeeder extends Seeder
      Dish::create(array(
             'name' => 'Торт ',
             'description' => 'Торт Торт Торт Торт Торт ',
+            'price' => '20',
             'category_id' => '3'
         ));          
      Dish::create(array(
             'name' => 'Сок ',
             'description' => 'Сок Сок Сок Сок Сок Сок Сок Сок ',
+            'price' => '5',
             'category_id' => '3'
         ));
         

@@ -171,17 +171,21 @@
   
 <div class="container-fluid">
    <div class="row">      
-          <div class="col-lg-3"> 
+          <div class="col-lg-2"> 
           
                   {{$dish->name}}  
                                        
        </div>      
+          <div class="col-lg-1"> 
+          {{$dish->price}}
+
+       </div>     
           <div class="col-lg-4"> 
            
                   {{$dish->description}}
        </div>       
           <div class="col-lg-2"> 
-           <button class="btn btn-primary ad-to-ord" data-id="{{$dish->id}}" data-name="{{$dish->name}}"> Добавить в заказ </button>
+           <button class="btn btn-primary ad-to-ord" data-price="{{$dish->price}}" data-id="{{$dish->id}}" data-name="{{$dish->name}}"> Добавить в заказ </button>
        </div>     
           <div class="col-lg-3"> 
           
@@ -362,7 +366,13 @@
                                            
           @Endif
  
-              
+        <br />
+        
+ <div>Всего: <div id="total"></div></div>
+        
+ 
+                
+                      
               <br />
     
                 <div class="title">Группы</div>
