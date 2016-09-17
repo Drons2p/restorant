@@ -61,3 +61,7 @@
             .bs-callout-success h4 {
                 color: #5cb85c;
             }
+
+            .order_red {
+                background: #E4D5D5;
+            }

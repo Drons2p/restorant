@@ -43,21 +43,21 @@ public function grupindex()
           
       $orders = Order::whereIn('id', $orderslist)->get();;
        
-    return \View('orders', array('orders' => $orders));
+    return \View('orders_grup', array('orders' => $orders));
           
     }
    
 public function create()
     {
         
-              
-             if (!\Session::has('user_id')) {
-                
-            $msg = "Вы джолжны авторизироватся";
+                    
+           if(\Gate::denies('create')){
+               
+            $msg = "Нет прав";
         
                 return \View('error', array('msg' => $msg));
-                
-          } 
+            }
+    
 	
    
            $id = \Input::get('id');
@@ -110,5 +110,16 @@ public function create()
          
     }
     
+    
+public function detach($order_id, $dish_id, $user_id)
+    {
+      
+        
+        \DB::table('dish_order')->where('dish_id', '=', $dish_id)->where('order_id', '=', $order_id)
+          ->where('user_id', '=', $user_id)->take(1)->delete();
+        
+        return \Redirect::back();   
+        
+     }
     
 }

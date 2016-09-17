@@ -31,6 +31,7 @@ Route::post('/dish/create', 'DishController@create');
 
 
 Route::post('/order/create', 'OrderController@create');
+Route::get('/order/detach/{order_id}/{dish_id}/{user_id}', 'OrderController@detach');
 
 
 Route::get('/grup/sync/{id}', 'GrupController@sync');

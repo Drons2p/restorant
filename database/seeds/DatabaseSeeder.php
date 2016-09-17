@@ -49,7 +49,7 @@ class UserTableSeeder extends Seeder
             'email' => 'drons2p@ukr.net',
             'name' => 'Dron',
             'is_admin' => '1',
-            'password' => Hash::make('222222')
+            'password' => Hash::make('111111')
         ));
     
         User::create(array(

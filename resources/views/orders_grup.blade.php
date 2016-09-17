@@ -1,10 +1,10 @@
 @extends('layouts.default')
 @section('content')
-     
+
         <div class="container">
             <div class="content">
 
-  @foreach ($orders as $order)
+        @foreach ($orders as $order)
            
 
 
@@ -17,7 +17,7 @@
              
 
   <div class="panel-heading">
-    <h3 class="panel-title">{{ $order->users()->first()->name }} - {{ $order->created_at}}</h3>
+    <h3 class="panel-title">{{ $order->Grups()->first()->name }} - {{ $order->created_at}}</h3>
   </div>
   <div class="panel-body">
    
@@ -35,7 +35,7 @@
             </div>
         
       @endforeach
-            </div>
+        </div>
         </div>
 @stop
 

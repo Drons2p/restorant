@@ -15,7 +15,7 @@ $( document ).ready(function() {
               user_name = $("#id_user").data("user_name");
         
               
-              $('#order-form').append('<div class="order_row" data-price="'+ price +'"><input class="hide" type="checkbox" name="dish[]" value="'+id+":"+id_user+":"+user_name+'" checked> '+name+' - '+ price +' - '+ user_name +' <span class="glyphicon glyphicon-trash del"></span></div>');
+              $('#order-form').append('<div class="order_row order_red" data-price="'+ price +'"><input class="hide" type="checkbox" name="dish[]" value="'+id+":"+id_user+":"+user_name+'" checked> '+name+' - '+ price +' - '+ user_name +' <span class="glyphicon glyphicon-trash del"></span></div>');
               
               total_price = total_price + price;
                
