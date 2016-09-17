@@ -9,9 +9,13 @@ $( document ).ready(function() {
               id = $(this).data( "id" );
               name = $(this).data( "name" );
               price = $(this).data( "price" );
-             
               
-              $('#order-form').append('<div class="order_row" data-price="'+ price +'"><input class="hide" type="checkbox" name="dish[]" value="'+id+'" checked> '+name+' '+ price +' <span class="glyphicon glyphicon-trash del"></span></div>');
+              
+              id_user = $("#id_user").data("id_user");
+              user_name = $("#id_user").data("user_name");
+        
+              
+              $('#order-form').append('<div class="order_row" data-price="'+ price +'"><input class="hide" type="checkbox" name="dish[]" value="'+id+":"+id_user+":"+user_name+'" checked> '+name+' - '+ price +' - '+ user_name +' <span class="glyphicon glyphicon-trash del"></span></div>');
               
               total_price = total_price + price;
                

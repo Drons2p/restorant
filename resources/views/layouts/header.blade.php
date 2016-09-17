@@ -108,9 +108,9 @@ $.ajaxSetup(
                     	    </div> 
       @Else
                    <div class="col-lg-offset-8 col-lg-2">  
-                   {{\Session::get('name')}}<br />
+<div id="id_user" data-id_user="{{\Session::get('user_id')}}" data-user_name="{{\Session::get('name')}}">{{\Session::get('name')}}</div>
+                   
              <a href="/logout">Выйти</a> 
-               
                  </div> 
                  
                    <div class="col-lg-2"> 

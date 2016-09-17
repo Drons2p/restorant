@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Час створення: Вер 14 2016 р., 21:29
+-- Час створення: Вер 17 2016 р., 11:34
 -- Версія сервера: 5.6.17
 -- Версія PHP: 5.5.12
 
@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Первое', 'Первое', '2016-09-14 16:28:58', '2016-09-14 16:28:58'),
-(2, 'Второе', 'Второе', '2016-09-14 16:28:58', '2016-09-14 16:28:58'),
-(3, 'Десерт', 'Десерт', '2016-09-14 16:28:58', '2016-09-14 16:28:58');
+(1, 'Первое', 'Первое', '2016-09-17 06:34:11', '2016-09-17 06:34:11'),
+(2, 'Второе', 'Второе', '2016-09-17 06:34:11', '2016-09-17 06:34:11'),
+(3, 'Десерт', 'Десерт', '2016-09-17 06:34:11', '2016-09-17 06:34:11');
 
 -- --------------------------------------------------------
 
@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `dishes` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `category_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -64,14 +65,14 @@ CREATE TABLE IF NOT EXISTS `dishes` (
 -- Дамп даних таблиці `dishes`
 --
 
-INSERT INTO `dishes` (`id`, `name`, `description`, `category_id`, `created_at`, `updated_at`) VALUES
-(1, 'Сало', 'Сало Сало Сало', 1, '2016-09-14 16:28:57', '2016-09-14 16:28:57'),
-(2, 'Хлеб ', 'Хлеб Хлеб Хлеб Хлеб ', 1, '2016-09-14 16:28:57', '2016-09-14 16:28:57'),
-(3, 'Борщ ', 'Борщ Борщ Борщ Борщ Борщ', 1, '2016-09-14 16:28:57', '2016-09-14 16:28:57'),
-(4, 'Картошка ', 'Картошка Картошка Картошка Картошка ', 2, '2016-09-14 16:28:57', '2016-09-14 16:28:57'),
-(5, 'Каша ', 'Каша Каша Каша Каша Каша ', 2, '2016-09-14 16:28:58', '2016-09-14 16:28:58'),
-(6, 'Торт ', 'Торт Торт Торт Торт Торт ', 3, '2016-09-14 16:28:58', '2016-09-14 16:28:58'),
-(7, 'Сок ', 'Сок Сок Сок Сок Сок Сок Сок Сок ', 3, '2016-09-14 16:28:58', '2016-09-14 16:28:58');
+INSERT INTO `dishes` (`id`, `name`, `description`, `category_id`, `price`, `created_at`, `updated_at`) VALUES
+(1, 'Сало', 'Сало Сало Сало', 1, 10, '2016-09-17 06:34:11', '2016-09-17 06:34:11'),
+(2, 'Хлеб ', 'Хлеб Хлеб Хлеб Хлеб ', 1, 20, '2016-09-17 06:34:11', '2016-09-17 06:34:11'),
+(3, 'Борщ ', 'Борщ Борщ Борщ Борщ Борщ', 1, 30, '2016-09-17 06:34:11', '2016-09-17 06:34:11'),
+(4, 'Картошка ', 'Картошка Картошка Картошка Картошка ', 2, 10, '2016-09-17 06:34:11', '2016-09-17 06:34:11'),
+(5, 'Каша ', 'Каша Каша Каша Каша Каша ', 2, 30, '2016-09-17 06:34:11', '2016-09-17 06:34:11'),
+(6, 'Торт ', 'Торт Торт Торт Торт Торт ', 3, 20, '2016-09-17 06:34:11', '2016-09-17 06:34:11'),
+(7, 'Сок ', 'Сок Сок Сок Сок Сок Сок Сок Сок ', 3, 5, '2016-09-17 06:34:11', '2016-09-17 06:34:11');
 
 -- --------------------------------------------------------
 
@@ -83,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `dish_order` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `dish_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -92,9 +94,9 @@ CREATE TABLE IF NOT EXISTS `dish_order` (
 -- Дамп даних таблиці `dish_order`
 --
 
-INSERT INTO `dish_order` (`id`, `dish_id`, `order_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NULL, NULL),
-(2, 2, 1, NULL, NULL);
+INSERT INTO `dish_order` (`id`, `dish_id`, `order_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2, NULL, NULL),
+(2, 2, 1, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -116,9 +118,9 @@ CREATE TABLE IF NOT EXISTS `grups` (
 --
 
 INSERT INTO `grups` (`id`, `name`, `admin_id`, `created_at`, `updated_at`) VALUES
-(1, 'Первая группа', 3, '2016-09-14 16:28:58', '2016-09-14 16:28:58'),
-(2, 'Вторая группа', 2, '2016-09-14 16:28:58', '2016-09-14 16:28:58'),
-(3, 'Третья группа', 3, '2016-09-14 16:28:58', '2016-09-14 16:28:58');
+(1, 'Первая группа', 3, '2016-09-17 06:34:11', '2016-09-17 06:34:11'),
+(2, 'Вторая группа', 2, '2016-09-17 06:34:11', '2016-09-17 06:34:11'),
+(3, 'Третья группа', 3, '2016-09-17 06:34:11', '2016-09-17 06:34:11');
 
 -- --------------------------------------------------------
 
@@ -213,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
 --
 
 INSERT INTO `orders` (`id`, `sent`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 0, 1, '2016-09-14 16:28:58', '2016-09-14 16:28:58');
+(1, 0, 1, '2016-09-17 06:34:11', '2016-09-17 06:34:11');
 
 -- --------------------------------------------------------
 
@@ -249,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `reqs` (
 --
 
 INSERT INTO `reqs` (`id`, `user_id`, `grup_id`, `created_at`, `updated_at`) VALUES
-(1, 2, 3, '2016-09-14 16:28:58', '2016-09-14 16:28:58');
+(1, 2, 3, '2016-09-17 06:34:11', '2016-09-17 06:34:11');
 
 -- --------------------------------------------------------
 
@@ -290,9 +292,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `is_admin`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Dron', 1, 'drons2p@ukr.net', '$2y$10$uoEvL4NLC5dcMR7KVFeBnO9gQI.kRZhrANTlFp9nqcy5PYUnfv.xu', NULL, '2016-09-14 16:28:57', '2016-09-14 16:28:57'),
-(2, 'Dron2', 0, 'drons2p2@ukr.net', '$2y$10$LBClGRfQ5LqeZMosVsTU0e596tzCG1Uy37oBYPSksw0QwfQdETMM6', NULL, '2016-09-14 16:28:57', '2016-09-14 16:28:57'),
-(3, 'Dron3', 0, 'drons2p3@ukr.net', '$2y$10$jQdVxQFBCOtHWQGX9m6vFOwMwzS6AX0G47.QEAn5B4iOdCjsXeeiu', NULL, '2016-09-14 16:28:57', '2016-09-14 16:28:57');
+(1, 'Dron', 1, 'drons2p@ukr.net', '$2y$10$TE.SmpgUqVa8go9.zCU45.pDnwy86YLnbXAR8nZb4Uoyfr5cB7CAW', NULL, '2016-09-17 06:34:10', '2016-09-17 06:34:10'),
+(2, 'Dron2', 0, 'drons2p2@ukr.net', '$2y$10$g/d9Upr8T9xDKeuxNi2oROErApfF0oBc39kSl6Q.23wi/j.6sQY5u', NULL, '2016-09-17 06:34:10', '2016-09-17 06:34:10'),
+(3, 'Dron3', 0, 'drons2p3@ukr.net', '$2y$10$mKGsmfxcmEwItfIs5UGqN.ymLdj8pppNKnavYR2lbJoNzDEVRkGpW', NULL, '2016-09-17 06:34:11', '2016-09-17 06:34:11');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

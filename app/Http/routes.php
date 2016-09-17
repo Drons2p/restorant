@@ -15,7 +15,9 @@
 Route::post('/сategory/create/', 'CategoryController@create'); 
 Route::post('/сategory/save/', 'CategoryController@save');
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index'); 
+Route::get('/grup/order/store/{grup_id?}', 'IndexController@index'); 
+
 Route::get('/order/ind/index', 'OrderController@index');
 Route::get('/order/grup/index', 'OrderController@grupindex');
 

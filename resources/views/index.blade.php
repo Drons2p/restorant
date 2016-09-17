@@ -269,8 +269,7 @@
               </div>
               
           <div class="col-lg-4"> 
-                <div class="title">Заказ</div>
-         @if($draft)
+                <div class="title">{{$title_form}}</div>
          
                       
              <form id="order-form" class="form" role="form" method="POST" action="/order/create">          
@@ -286,15 +285,7 @@
                                 <option value="1">Как заказ</option>
                             </select>
                             
-                           <select class="form-control" name="grup_id"> 
-                           
-                                <option value="0">Индивидуальный</option>
-                                
-              @foreach ($Usergrupobj as $Usergrup)
-             
-                                <option value="{{$Usergrup->id}}">Как заказ в группу {{$Usergrup->name}}</option>
-                   @endforeach           
-                            </select>
+          <input type="hidden" name="grup_id" value="{{ $grup_id }}"/>
                       
        </div>     
 
@@ -308,63 +299,20 @@
                       
        </div>     
     </div>  
-</div>     
-
-     
-                            
+</div>      
 
 			@endif
-                                 
-                    @foreach ($draft->Dish as $draft_dish) 
-                         <div  class="order_row" data-price="{{ $draft_dish->price }}"><input class="hide" type="checkbox" name="dish[]" value="{{ $draft_dish->id }}" checked>{{ $draft_dish->name }} {{ $draft_dish->price }} <span class="glyphicon glyphicon-trash del"></span></div>
-                      @endforeach
-                                   <input type="hidden" name="id" value="{{{$draft->id}}}"/>
-                                     
-                        </form>  
-                        
-          @Else 
-                      <form id="order-form" class="form" role="form" method="POST" action="/order/create">          
-                                        
-			 @if (Session::has('user_id'))     
-               
-<div class="container-fluid">
-   <div class="row">      
-          <div class="col-lg-6"> 
-          
-                           <select class="form-control" name="sent"> 
-                                <option value="0">Как ченовик</option>
-                                <option value="1">Как заказ</option>
-                     
-                            </select>
-                                                 <select class="form-control" name="grup_id"> 
-                           
-                                <option value="0">Индивидуальный</option>
-                                
-              @foreach ($Usergrupobj as $Usergrup)
-                                <option value="{{$Usergrup->id}}">Как заказ в группу {{ $Usergrup->name }}</option>
-                   @endforeach           
-                            </select>
-       </div>     
-
-    
-          <div class="col-lg-6"> 
-           
-                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                                                         <button type="submit" class="btn btn-primary">
-                                                        Отправить
-                                                    </button>
-                                             
-       </div>     
-    </div>  
-</div>     
-
-     
-
-			@endif
-                            
-                                        </form> 
-                                           
+                   
+         @if($checkbox_form)             
+                 {!! $checkbox_form  !!}   
           @Endif
+                       
+         @if($draft)  
+         <input type="hidden" name="id" value="{{ $draft->id }}"/>
+          @Endif
+          
+                        </form>  
+                  
  
         <br />
         
@@ -383,7 +331,8 @@
        @if(!in_array($grup->id, $Userreqslist))
            @if(in_array($grup->id, $Usergruplist))
             
-             <a href="/grup/detach/{{\Session::get('user_id')}}/{{$grup->id}}"> - Покинуть</a> 
+          - <a href="/grup/detach/{{\Session::get('user_id')}}/{{$grup->id}}"> Покинуть</a> 
+          - <a href="/grup/order/store/{{$grup->id}}"> Заказ от группы</a> 
                   
               @Else 
            <a href="/grup/req/{{$grup->id}}"> - Присоеденится</a>   
@@ -393,7 +342,14 @@
         <br />
         @foreach ($grup->users as $user)
         
-               {{ $user->name }} <a href="/grup/detach/{{$user->id}}/{{$grup->id}}">Удалить</a>  <br />
+               {{ $user->name }} 
+               
+           @if($grup->admin_id == Session::get('user_id'))
+               <a href="/grup/detach/{{$user->id}}/{{$grup->id}}">Удалить</a>  
+                        
+              @Endif       
+           
+        <br />
         
           @endforeach
           <br />

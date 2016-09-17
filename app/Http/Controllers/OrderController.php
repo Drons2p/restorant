@@ -86,14 +86,27 @@ public function create()
            $order->users()->sync([\Session::get('user_id')]);
         }
    
+        $user_id = \Session::get('user_id');
    
         if (isset($dish) && !empty($dish)) {
-             $order->dish()->sync($dish);
-          } 
-        
+     
+      
+           \DB::table('dish_order')->where('order_id', '=', $order->id)->delete();
             
+            
+            
+           foreach ($dish as $dis) { 
+             
+                $dis_ar = explode(":", $dis);
+             
+                
+                 $order->dish()->attach($dis_ar[0], array('user_id' => $dis_ar[1], 'user_name' => $dis_ar[2]));
+          }    
+           
+          } 
+         
 
-        return \Redirect::to('/');
+      return \Redirect::to('/grup/order/store/'.$grup_id);
          
     }
     

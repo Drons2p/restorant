@@ -168,8 +168,8 @@ class PivotTableSeeder extends Seeder
     public function run() {
   
         DB::table('dish_order')->delete();
-        DB::insert('insert into dish_order (dish_id, order_id) values (1, 1)');  
-        DB::insert('insert into dish_order (dish_id, order_id) values (2, 1)');  
+        DB::insert('insert into dish_order (dish_id, order_id, user_id, user_name) values (1, 1, 2, "Dron2")');  
+        DB::insert('insert into dish_order (dish_id, order_id, user_id, user_name) values (2, 1, 2, "Dron2")');  
         
     }
  }
