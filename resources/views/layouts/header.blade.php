@@ -118,7 +118,8 @@ $.ajaxSetup(
           @can('create') <!-- проверяем права -->       
              <a href="/order/ind/index">Заказы индивидуальные</a><br />
              <a href="/order/grup/index">Заказы груповые</a> <br />
-             <a href="/order/export">Экспорт заказов</a>    
+             <a href="/order/export">Экспорт заказов</a>   <br />
+             <a href="/dish/export">Экспорт меню</a>    
     @endcan 
                  </div> 
 	@endif

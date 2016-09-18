@@ -119,6 +119,8 @@ public function detach($order_id, $dish_id, $user_id)
         return \Redirect::back();   
         
      }
+     
+     
 public function export()
     {
       
@@ -134,9 +136,7 @@ public function export()
 
   $list = array();
   $orders = Order::all();
-  
-    $list = Order::with('Dish')->get();
-    $list = $list->toArray();  
+  $list = $orders->toArray();  
     
   $k = 0;  
   

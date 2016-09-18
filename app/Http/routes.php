@@ -28,6 +28,7 @@ Route::post('/user/registration', 'UserController@create');
 
 
 Route::post('/dish/create', 'DishController@create');
+Route::get('/dish/export', 'DishController@export');
 
 
 Route::post('/order/create', 'OrderController@create');
