@@ -37,7 +37,12 @@ class IndexController extends Controller
         $draft_user_id = $draft_dish->pivot->user_id;  
         $draft_user_name = $draft_dish->pivot->user_name;  
         
-          $checkbox_form .= "<div class=\"order_row\" data-price=\"$draft_dish->price\"><input class=\"hide\" type=\"checkbox\" name=\"dish[]\" value=\"$draft_dish->id:$draft_user_id:$draft_user_name\" checked>$draft_dish->name - $draft_dish->price - $draft_user_name <span class=\"glyphicon glyphicon-trash del\"></span></div>";
+          $checkbox_form .= "<div class=\"order_row\" data-price=\"$draft_dish->price\"><input class=\"hide\" type=\"checkbox\" name=\"dish[]\" value=\"$draft_dish->id:$draft_user_id:$draft_user_name\" checked>$draft_dish->name - $draft_dish->price - $draft_user_name";
+            if ($grup_order->admin_id == \Session::get('user_id') or $draft_user_id == \Session::get('user_id'))  {
+                $checkbox_form .= "<span class=\"glyphicon glyphicon-trash del\"></span>";      
+            }
+        
+           $checkbox_form .= "</div>";
         } 
     
      }
