@@ -32,11 +32,13 @@ Route::post('/dish/create', 'DishController@create');
 
 Route::post('/order/create', 'OrderController@create');
 Route::get('/order/detach/{order_id}/{dish_id}/{user_id}', 'OrderController@detach');
+Route::get('/order/export/', 'OrderController@export');
 
 
 Route::get('/grup/sync/{id}', 'GrupController@sync');
 Route::get('/grup/req/{id}', 'GrupController@req');
 Route::get('/grup/accept/{id}', 'GrupController@accept');
 Route::get('/grup/detach/{user_id}/{grup_id}', 'GrupController@detach');
+Route::get('/grup/del/{id}', 'GrupController@del');
 
 

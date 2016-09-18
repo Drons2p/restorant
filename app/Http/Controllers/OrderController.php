@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-
 use App\Order;
 
 class OrderController extends Controller
@@ -17,7 +16,7 @@ public function index()
     { 
              if(\Gate::denies('create')){
                
-            $msg = "Íåò ïðàâ";
+            $msg = "ÐÐµÑ‚ Ð¿Ñ€Ð°Ð²";
         
                 return \View('error', array('msg' => $msg));
             }
@@ -34,14 +33,14 @@ public function grupindex()
     { 
              if(\Gate::denies('create')){
                
-            $msg = "Íåò ïðàâ";
+            $msg = "ÐÐµÑ‚ Ð¿Ñ€Ð°Ð²";
         
                 return \View('error', array('msg' => $msg));
             }
              
         $orderslist = \DB::table('orderables')->where('orderable_type', '=', 'App\Grup')->lists('order_id');
           
-      $orders = Order::whereIn('id', $orderslist)->get();;
+      $orders = Order::whereIn('id', $orderslist)->get();
        
     return \View('orders_grup', array('orders' => $orders));
           
@@ -50,14 +49,13 @@ public function grupindex()
 public function create()
     {
         
-                    
-           if(\Gate::denies('create')){
-               
-            $msg = "Íåò ïðàâ";
+           if (!\Session::has('user_id')) {
+                
+            $msg = "Ð’Ñ‹ Ð´Ð¶Ð¾Ð»Ð¶Ð½Ñ‹ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑÑ";
         
                 return \View('error', array('msg' => $msg));
-            }
-    
+                
+          } 
 	
    
            $id = \Input::get('id');
@@ -121,5 +119,50 @@ public function detach($order_id, $dish_id, $user_id)
         return \Redirect::back();   
         
      }
+public function export()
+    {
+      
+    $headers = [
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
+           'Content-type'        => 'text/html; charset=utf-8', 
+          'Content-Disposition' => 'attachment; filename=orders.csv',
+           'Expires'             => '0',
+           'Pragma'              => 'public'
+    ];
+
+
+
+  $list = array();
+  $orders = Order::all();
+  
+    $list = Order::with('Dish')->get();
+    $list = $list->toArray();  
     
+  $k = 0;  
+  
+ foreach ($orders as $order) {
+    $dish_s = '';
+    
+    foreach ($order->dish as $dish) {
+        $dish_s .= $dish->pivot->user_name .'-'. $dish->name .'-'. $dish->price .'-';
+    }
+    $list[$k]['dish'] = $dish_s;
+    $k++;
+ }
+ 
+  array_unshift($list, array_keys($list[0]));
+
+   $callback = function() use ($list) 
+    {
+        $FH = fopen('php://output', 'w');
+        foreach ($list as $row) { 
+            fputcsv($FH, $row);
+        }
+        fclose($FH);
+    };
+
+    return \Response::stream($callback, 200, $headers);
+ 
+
+     }
 }

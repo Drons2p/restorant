@@ -280,9 +280,8 @@
    <div class="row">      
           <div class="col-lg-6"> 
                            <select class="form-control" name="sent"> 
-                           
                                 <option value="0">Как ченовик</option>
-                                <option value="1">Как заказ</option>
+                             {!! $option_form !!}
                             </select>
                             
           <input type="hidden" name="grup_id" value="{{ $grup_id }}"/>
@@ -293,9 +292,8 @@
           <div class="col-lg-6"> 
           
                              <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                                                         <button type="submit" class="btn btn-primary">
-                                                        Отправить
-                                                    </button>
+                             
+                             <button type="submit" class="btn btn-primary">Сохранить</button>
                       
        </div>     
     </div>  
@@ -327,19 +325,25 @@
                   
     @foreach ($grups as $grup)
         
-        {{ $grup->name }} - основатель {{ $grup->founder()->name }}
-       @if(!in_array($grup->id, $Userreqslist))
+        {{ $grup->name }} - основатель {{ $grup->founder()->name }} <br />
+       @if(!in_array($grup->id, $Userreqslist))  
            @if(in_array($grup->id, $Usergruplist))
             
-          - <a href="/grup/detach/{{\Session::get('user_id')}}/{{$grup->id}}"> Покинуть</a> 
+         <a href="/grup/detach/{{\Session::get('user_id')}}/{{$grup->id}}"> Покинуть</a> 
           - <a href="/grup/order/store/{{$grup->id}}"> Заказ от группы</a> 
-                  
+        
               @Else 
            <a href="/grup/req/{{$grup->id}}"> - Присоеденится</a>   
                                        
               @Endif                  
-          @Endif
+          @Endif  
+          
+           @if($grup->admin_id == Session::get('user_id'))
+           -      <a href="/grup/del/{{$grup->id}}">Удалить группу</a> 
+              @Endif        
+                  
         <br />
+     <div class="grup_users"> 
         @foreach ($grup->users as $user)
         
                {{ $user->name }} 
@@ -352,6 +356,8 @@
         <br />
         
           @endforeach
+      </div>  
+          
           <br />
           
       @endforeach

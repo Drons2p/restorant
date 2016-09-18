@@ -123,6 +123,14 @@ public function create()
         return \Redirect::to('/');
          
     }
+
+public function del($id)
+    {
+           Grup::where("id", "=", $id)->delete();
+           \DB::table('grup_user')->where('grup_id', '=', $id)->delete();
     
+    
+        return \Redirect::to('/');
+    }
     
 }
