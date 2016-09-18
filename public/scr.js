@@ -1,10 +1,12 @@
-
+var timerId = 0;
 total_price = 0;
 
 $( document ).ready(function() {
     TotalPrice();
         $( ".ad-to-ord" ).on('click', function(){
-               
+              
+                   clearInterval(timerId);
+    
               
               id = $(this).data( "id" );
               name = $(this).data( "name" );
@@ -26,6 +28,7 @@ $( document ).ready(function() {
               
             $( ".del" ).on('click', function(){
                    $(this).parent().remove() 
+                   clearInterval(timerId);
              TotalPrice();
             }); 
              
@@ -34,6 +37,7 @@ $( document ).ready(function() {
         
         $( ".del" ).on('click', function(){
                $(this).parent().remove() 
+                   clearInterval(timerId);
              TotalPrice();
                
         });   

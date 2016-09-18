@@ -21,6 +21,7 @@ class IndexController extends Controller
     { 
   
     $option_form = " ";
+    $ajax = " ";
             
     if ($grup_id > 0)  {
         
@@ -48,6 +49,8 @@ class IndexController extends Controller
      }
     
             $title_form = "Заказ для группы " . $grup_order->name;
+            
+              $ajax = "<script src=\"/ajax.js\"></script>";
     
           if ($grup_order->admin_id == \Session::get('user_id')) {
             
@@ -98,7 +101,7 @@ class IndexController extends Controller
     return \View('index', array('categories' => $categories, 
                     'draft' => $draft, 'grup_id' => $grup_id,  
                   'title_form' => $title_form, 'checkbox_form' => $checkbox_form, 
-                  'option_form' => $option_form, 
+                  'option_form' => $option_form, 'ajax' => $ajax, 
                  'grups' => $grups, 'reqs' => $reqs, 
                  'Usergruplist' => $Usergruplist,  
                  'Userreqslist' => $Userreqslist));

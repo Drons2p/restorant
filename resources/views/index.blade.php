@@ -1,6 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
+{!! $ajax !!}
 
 <div class="container-fluid">
    <div class="row">      
@@ -302,7 +303,7 @@
 			@endif
                    
          @if($checkbox_form)             
-                 {!! $checkbox_form  !!}   
+              <div id="checkbox_form">{!! $checkbox_form  !!}</div>      
           @Endif
                        
          @if($draft)  
