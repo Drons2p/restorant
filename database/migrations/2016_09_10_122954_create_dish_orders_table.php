@@ -17,7 +17,10 @@ class CreateDishOrdersTable extends Migration
             $table->integer('dish_id');
             $table->integer('order_id');
             $table->integer('user_id');
+            $table->string('dish_name');
             $table->string('user_name');
+            $table->index('dish_id');
+            $table->index('order_id');
             $table->timestamps();
         });
     }

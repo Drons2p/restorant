@@ -18,6 +18,7 @@ class CreateDishTable extends Migration
             $table->text('description');
             $table->integer('category_id');
             $table->integer('price');
+            $table->index('category_id'); 
             $table->timestamps();
         });
     }

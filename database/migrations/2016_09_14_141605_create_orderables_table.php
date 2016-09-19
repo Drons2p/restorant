@@ -17,6 +17,8 @@ class CreateOrderablesTable extends Migration
             $table->integer('order_id');
             $table->integer('orderable_id');
             $table->string('orderable_type');
+            $table->index('order_id');
+            $table->index('orderable_id');
             $table->timestamps();
         });
     }

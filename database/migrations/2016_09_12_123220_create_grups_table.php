@@ -16,6 +16,7 @@ class CreateGrupsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('admin_id');
+            $table->index('admin_id');
             $table->timestamps();
         });
     }

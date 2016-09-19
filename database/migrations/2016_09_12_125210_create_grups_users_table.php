@@ -16,6 +16,8 @@ class CreateGrupsUsersTable extends Migration
             $table->increments('id'); 
             $table->integer('grup_id');
             $table->integer('user_id');
+            $table->index('grup_id');
+            $table->index('user_id');
             $table->timestamps();
         });
     }
