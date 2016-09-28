@@ -79,10 +79,10 @@ class IndexController extends Controller
                 } 
              
             
-            $option_form = "<option value=\"1\">Как заказ</option>";
-            
              }
             
+            
+            $option_form = "<option value=\"1\">Как заказ</option>";
              
         
      }
