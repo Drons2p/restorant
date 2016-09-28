@@ -281,7 +281,7 @@
    <div class="row">      
           <div class="col-lg-6"> 
                            <select class="form-control" name="sent"> 
-                                <option value="0">Как ченовик</option>
+                                <option value="0">Как черновик</option>
                              {!! $option_form !!}
                             </select>
                             
